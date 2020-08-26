@@ -22,7 +22,10 @@ module ProntoForms
           query.each { |k, v| req.params[k] = v }
         end
         if res.success?
-          ResourceList.new(JSON.parse(res.body), 0, 20, method, resource, self)
+          ResourceList.new(JSON.parse(res.body), {
+            'p' => 0,
+            's' => 100
+          }.merge(query), method, resource, self)
         else
           nil
         end

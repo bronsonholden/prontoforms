@@ -2,18 +2,17 @@ require 'prontoforms/resource'
 
 module ProntoForms
   class ResourceList < Resource
-    attr_reader :limit, :offset, :method, :resource, :client, :parent
+    attr_reader :query, :method, :resource, :client, :parent
 
-    def initialize(data, offset, limit, method, resource, client, parent = nil)
+    def initialize(data, query, method, resource, client, parent = nil)
       super(data, client)
-      @limit = limit
-      @offset = offset
+      @query = query
       @method = method
       @resource = resource
     end
 
     def next
-      client.send(method, limit: limit, offset: offset + limit)
+      client.send(method, query: query.merge({ 'p' => query['p'] + 1}))
     end
 
     def items
