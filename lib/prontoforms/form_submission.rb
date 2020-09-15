@@ -18,6 +18,11 @@ module ProntoForms
     property :data_persisted?, key: 'dataPersisted'
     property :submitter_id, key: 'userId'
     property :submitter_username, key: 'username'
+    property :dispatcher, key: 'dispatcher'
+
+    property :dispatcher do
+      client.user(data.dig('dispatcher', 'identifier'))
+    end
 
     property :server_receive_date do
       str = data.fetch('serverReceiveDate')
