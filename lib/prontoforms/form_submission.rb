@@ -25,10 +25,14 @@ module ProntoForms
       str.nil? ? nil : DateTime.strptime(str)
     end
 
+    # Retrieve the pages containing the form questions and answers
+    # @return [Hash] Hash of questions and answers for the FormSubmission
     def pages
       document.fetch('pages')
     end
 
+    # Retrieve the dispatching User, if the form was dispatched
+    # @return [User] The user that dispatched the form, or nil
     def dispatcher
       client.user(document.dig('dispatcher', 'identifier'))
     end
