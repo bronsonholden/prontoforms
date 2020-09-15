@@ -62,6 +62,19 @@ module ProntoForms
       end
     end
 
+    def form_submission(id)
+      return nil if id.nil?
+      res = connection.get do |req|
+        req.url "data/#{id.to_s}"
+      end
+      if res.success?
+        data = JSON.parse(res.body)
+        FormSubmission.new(data, self)
+      else
+        nil
+      end
+    end
+
     # Create a connection that can be used to execute a request against the
     # ProntoForms API.
     # @return [Faraday::Connection]
