@@ -20,21 +20,37 @@ module ProntoForms
     property :submitter_username, key: 'username'
     property :dispatcher, key: 'dispatcher'
 
-    property :dispatcher do
-      client.user(data.dig('dispatcher', 'identifier'))
-    end
-
     property :server_receive_date do
       str = data.fetch('serverReceiveDate')
       str.nil? ? nil : DateTime.strptime(str)
     end
 
     def pages
+      document.fetch('pages')
+    end
+
+    def dispatcher
+      client.user(document.dig('dispatcher', 'identifier'))
+    end
+
+    private
+
+    # Returns additional data about the submission
+    # @api private
+    def document
+      return @document if !@document.nil?
+      document!
+    end
+
+    # Force loads the submission document
+    # @api private
+    def document!
       res = client.connection.get do |req|
         req.url "#{resource_name}/#{id}/document.json"
       end
       if res.success?
-        JSON.parse(res.body).fetch('pages')
+        @document = JSON.parse(res.body)
+        @document
       end
     end
   end
