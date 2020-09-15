@@ -1,0 +1,18 @@
+# prontoforms changelog
+
+
+## [Unreleased]
+### Changed
+* Errors now provide a message describing the issue
+* `ProntoForms::Client` now raises error on invalid resource definition.
+
+## [0.2.0] - 26 Aug 2020
+### Bugfixes
+* Corrected pagination of resource lists
+
+## [0.1.0] - 25 Aug 2020
+* Initial release
+
+[Unreleased]: https://github.com/paulholden2/prontoforms/compare/v0.2.0...HEAD
+[0.1.0]: https://github.com/paulholden2/prontoforms/releases/tag/v0.1.0
+[0.2.0]: https://github.com/paulholden2/prontoforms/releases/tag/v0.2.0
