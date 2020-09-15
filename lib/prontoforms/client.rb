@@ -14,7 +14,10 @@ module ProntoForms
     end
 
     def self.resource(method, verb: :get, resource:, url: resource.resource_name)
-      # TODO: Raise error if verb is invalid
+      raise ProntoForms::InvalidHttpVerb.new(verb) if !%i(
+        get
+        post
+      ).include? verb
 
       define_method(method) do |query: {}|
         res = connection.send(verb) do |req|

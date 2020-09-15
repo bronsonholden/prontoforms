@@ -9,4 +9,10 @@ module ProntoForms
       @message = message
     end
   end
+
+  class InvalidHttpVerb < Error
+    def initialize(verb)
+      super("Invalid HTTP verb: #{verb}")
+    end
+  end
 end
