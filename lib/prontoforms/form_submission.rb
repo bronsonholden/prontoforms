@@ -35,15 +35,14 @@ module ProntoForms
 
     private
 
-    # Returns additional data about the submission
-    # @api private
+    # Returns additional data about the submission. Uses cached data,
+    # otherwise it loads and returns the data via #document!
     def document
       return @document if !@document.nil?
       document!
     end
 
     # Force loads the submission document
-    # @api private
     def document!
       res = client.connection.get do |req|
         req.url "#{resource_name}/#{id}/document.json"
