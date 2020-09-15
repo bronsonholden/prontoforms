@@ -3,6 +3,7 @@ require 'json'
 require 'prontoforms/resource_list'
 require 'prontoforms/form_space'
 require 'prontoforms/form_submission'
+require 'prontoforms/user'
 
 module ProntoForms
   class Client
@@ -44,6 +45,22 @@ module ProntoForms
 
     resource_list :form_spaces, FormSpace
     resource_list :form_submissions, FormSubmission
+
+    # Retrieve a user by identifier
+    # @param id [String] The user identifier
+    # @return [User] A User object for the requested user
+    def user(id)
+      return nil if id.nil?
+      res = connection.get do |req|
+        req.url "users/#{id.to_s}"
+      end
+      if res.success?
+        data = JSON.parse(res.body)
+        User.new(data, self)
+      else
+        nil
+      end
+    end
 
     # Create a connection that can be used to execute a request against the
     # ProntoForms API.
