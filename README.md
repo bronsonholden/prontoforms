@@ -1,5 +1,7 @@
 # ProntoForms
 
+[![Gem Version](https://badge.fury.io/rb/prontoforms.svg)](https://badge.fury.io/rb/prontoforms) [![Inline docs](http://inch-ci.org/github/paulholden2/prontoforms.svg?branch=master)](http://inch-ci.org/github/paulholden2/prontoforms)
+
 A library for interacting with the ProntoForms REST API in Ruby applications.
 
 ## Installation
