@@ -28,6 +28,7 @@ module ProntoForms
     alias_method :submitter_id, :user_id
     alias_method :submitter_username, :username
 
+    # @return [DateTime] Timestamp the submission was received by the server
     property :server_receive_date do
       str = data.fetch('serverReceiveDate')
       str.nil? ? nil : DateTime.strptime(str)
