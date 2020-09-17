@@ -1,5 +1,10 @@
 # prontoforms changelog
 
+## [Unreleased]
+### Added
+* Added Form resource
+* Can retrieve forms by form space
+
 ## [v0.3.1] - 15 Sep 2020
 ### Removed
 * Unused `InvalidHttpVerb` error class
