@@ -4,6 +4,9 @@ module ProntoForms
   class Resource
     attr_reader :data, :client, :parent
 
+    # Defines a property of the resource
+    # @return [nil]
+    # @api private
     def self.property(name, key: nil, &block)
       define_method(name) {
         if block_given?
@@ -22,6 +25,7 @@ module ProntoForms
       @parent = parent
     end
 
+    # The resource's identifier
     def self.resource_name
       name = self.to_s.split("::").last
       "#{name.downcase}s"
