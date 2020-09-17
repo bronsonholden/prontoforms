@@ -5,14 +5,23 @@ module ProntoForms
   class FormSubmission < Resource
     def self.resource_name() 'data'; end
 
+    # @return [String] The FormSubmission identifier
     property :id, key: 'identifier'
+    # @return [String] Submission reference number
     property :reference_number, key: 'referenceNumber'
+    # @return [String] Submission state. One of: Complete, Processing, Dispatched
     property :state, key: 'state'
+    # @return [String] Submission data state
     property :data_state, key: 'dataState'
+    # @return [Boolean] Has the submission data been persisted on the server
     property :data_persisted, key: 'dataPersisted'
+    # @return [String] The form's version identifier
     property :form_version_id, key: 'formVersionId'
+    # @return [String] The form's identifier
     property :form_id, key: 'formId'
+    # @return [String] Submitter's user identifier
     property :user_id, key: 'userId'
+    # @return [String] Submitter's username
     property :username, key: 'username'
     # Aliases
     property :data_persisted?, key: 'dataPersisted'

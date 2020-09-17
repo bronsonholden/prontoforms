@@ -62,6 +62,9 @@ module ProntoForms
       end
     end
 
+    # Retrieve a form submission by identifier
+    # @param id [String] The form submission identifier
+    # @return [FormSubmission] A FormSubmission object
     def form_submission(id)
       return nil if id.nil?
       res = connection.get do |req|
