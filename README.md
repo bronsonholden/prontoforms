@@ -22,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-Check back later
+To get started, first [create a ProntoForms API key] in your ProntoForms
+account. Then you can begin using the API client in your Ruby application:
+
+```rb
+client = ProntoForms::Client.new(api_key_id, api_key_secret)
+client.form_spaces # Returns all FormSpaces in your account
+```
+
+Review [the documentation](https://rubydoc.info/github/paulholden2/prontoforms)
+for more information on how to use this library to interact with ProntoForms.
 
 ## Development
 
@@ -39,3 +48,5 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/paulho
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+[create a ProntoForms API key]: https://support.prontoforms.com/hc/en-us/articles/217496468-Setup-an-API-Application-on-ProntoForms#Create
