@@ -23,10 +23,10 @@ module ProntoForms
     property :user_id, key: 'userId'
     # @return [String] Submitter's username
     property :username, key: 'username'
-    # Aliases
-    property :data_persisted?, key: 'dataPersisted'
-    property :submitter_id, key: 'userId'
-    property :submitter_username, key: 'username'
+
+    alias_method :data_persisted?, :data_persisted
+    alias_method :submitter_id, :user_id
+    alias_method :submitter_username, :username
 
     property :server_receive_date do
       str = data.fetch('serverReceiveDate')
