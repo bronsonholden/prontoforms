@@ -2,6 +2,9 @@ require 'prontoforms/resource'
 require 'prontoforms/form'
 
 module ProntoForms
+  # Represents a form space resource in ProntoForms. Form spaces are the
+  # primary organizational unit for forms, data sources, destinations, and
+  # other resources.
   class FormSpace < Resource
     # @return [String] The FormSpace identifier
     property :id, key: 'identifier'

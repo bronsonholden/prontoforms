@@ -1,6 +1,8 @@
 require 'prontoforms/resource'
 
 module ProntoForms
+  # A form includes inputs, validations, logic, and other configuration that
+  # facilitates data capture for a specific purpose.
   class Form < Resource
     def self.resource_name() 'forms'; end
 

@@ -1,6 +1,7 @@
 require 'prontoforms/resource'
 
 module ProntoForms
+  # A ProntoForms user account.
   class User < Resource
     def self.resource_name() 'users'; end
 

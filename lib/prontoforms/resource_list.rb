@@ -1,6 +1,7 @@
 require 'prontoforms/resource'
 
 module ProntoForms
+  # A wrapper for retrieving paged resources.
   class ResourceList < Resource
     attr_reader :query, :method, :resource, :client, :parent
 

@@ -2,6 +2,8 @@ require 'json'
 require 'prontoforms/resource'
 
 module ProntoForms
+  # A FormSubmission represents submitted form data in ProntoForms. It
+  # includes various metadata about the submission as well.
   class FormSubmission < Resource
     def self.resource_name() 'data'; end
 

@@ -1,6 +1,7 @@
 require 'date'
 
 module ProntoForms
+  # Base class for resource-related classes.
   class Resource
     attr_reader :data, :client, :parent
 

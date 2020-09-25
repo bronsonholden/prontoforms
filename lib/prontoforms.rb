@@ -2,6 +2,7 @@ require 'prontoforms/version'
 require 'prontoforms/client'
 
 module ProntoForms
+  # Base error class.
   class Error < StandardError
     attr_reader :message
 

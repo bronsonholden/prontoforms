@@ -6,6 +6,8 @@ require 'prontoforms/form_submission'
 require 'prontoforms/user'
 
 module ProntoForms
+  # Allows you to retrieve resources from ProntoForms and perform other
+  # functions with the API.
   class Client
     # @return [String]
     attr_reader :api_key_id
