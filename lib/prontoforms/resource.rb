@@ -3,7 +3,12 @@ require 'date'
 module ProntoForms
   # Base class for resource-related classes.
   class Resource
-    attr_reader :data, :client, :parent
+    # @return [Hash] Retrieve raw JSON data associated with this resource
+    attr_reader :data
+    # @return [Client] API client
+    attr_reader :client
+    # @return [Resource] Parent object (applicable to child resources)
+    attr_reader :parent
 
     # Defines a property of the resource
     # @return [nil]
@@ -32,6 +37,7 @@ module ProntoForms
       "#{name.downcase}s"
     end
 
+    # The resource's identifier
     def resource_name
       self.class.resource_name
     end

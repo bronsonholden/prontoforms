@@ -9,11 +9,12 @@ module ProntoForms
   # Allows you to retrieve resources from ProntoForms and perform other
   # functions with the API.
   class Client
-    # @return [String]
+    # @return [String] ProntoForms API key ID
     attr_reader :api_key_id
-    # @return [String]
+    # @return [String] ProntoForms API key secret
     attr_reader :api_key_secret
 
+    # Create a client and use provided API credentials
     # @param api_key_id Your ProntoForms REST API key
     # @param api_key_secret Your ProntoForms REST API secret
     def initialize(api_key_id, api_key_secret)
