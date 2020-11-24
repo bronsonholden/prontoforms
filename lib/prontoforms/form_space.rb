@@ -1,5 +1,6 @@
 require 'prontoforms/resource'
 require 'prontoforms/form'
+require 'prontoforms/document'
 
 module ProntoForms
   # Represents a form space resource in ProntoForms. Form spaces are the
@@ -14,6 +15,22 @@ module ProntoForms
     property :problem_contact_email, key: 'problemContactEmail'
     # @return [Boolean] Whether updates are automatically pushed to devices
     property :push_updates_to_device, key: 'pushUpdatesToDevice'
+
+    # Get all forms in the form space
+    # @return [ResourceList] A ResourceList containing Form objects
+    def documents
+      res = client.connection.get do |req|
+        req.url "formspaces/#{id}/forms"
+      end
+      if res.success?
+        ResourceList.new(JSON.parse(res.body), {
+          'p' => 0,
+          's' => 100
+        }, :documents, Document, self)
+      else
+        nil
+      end
+    end
 
     # Get all forms in the form space
     # @return [ResourceList] A ResourceList containing Form objects
