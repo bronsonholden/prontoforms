@@ -65,6 +65,23 @@ module ProntoForms
       end
     end
 
+    # Retrieve a form space by its identifier
+    # @param id [String] The form space identifier
+    # @return [FormSpace] A FormSpace object
+    def form_space(id)
+      return nil if id.nil?
+
+      res = connection.get do |req|
+        req.url "formspaces/#{id.to_s}"
+      end
+
+      if res.success?
+        FormSpace.new(JSON.parse(res.body), self)
+      else
+        nil
+      end
+    end
+
     # Retrieve a form submission by identifier
     # @param id [String] The form submission identifier
     # @return [FormSubmission] A FormSubmission object
