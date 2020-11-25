@@ -20,6 +20,7 @@ module ProntoForms
       @query = query
       @method = method
       @resource = resource
+      @parent = parent
     end
 
     # Retrieve the next page of results, using the same number of items per
