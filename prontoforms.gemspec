@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'prontoforms'
   spec.version       = ProntoForms::VERSION
   spec.authors       = ['Paul Holden']
-  spec.email         = ['paul@holdensoftware.com']
+  spec.email         = ['paul@codelunker.com']
 
   spec.summary       = 'A library for using the ProntoForms REST API in Ruby applications.'
   spec.description   = 'A library for using the ProntoForms REST API in Ruby applications.'
