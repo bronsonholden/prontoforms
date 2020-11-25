@@ -6,6 +6,10 @@ SimpleCov.start
 
 require 'bundler/setup'
 require 'prontoforms'
+require 'webmock/rspec'
+require 'support/mock_prontoforms'
+
+WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -16,5 +20,9 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.before(:each) do
+    stub_request(:any, /api\.prontoforms\.com/).to_rack(MockProntoForms)
   end
 end
