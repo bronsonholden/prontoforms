@@ -35,14 +35,11 @@ module ProntoForms
           req.url url
           query.each { |k, v| req.params[k] = v }
         end
-        if res.success?
-          ResourceList.new(JSON.parse(res.body), {
-            'p' => 0,
-            's' => 100
-          }.merge(query), method, resource, self)
-        else
-          nil
-        end
+
+        ResourceList.new(JSON.parse(res.body), {
+          'p' => 0,
+          's' => 100
+        }.merge(query), method, resource, self)
       end
     end
 
@@ -57,12 +54,8 @@ module ProntoForms
       res = connection.get do |req|
         req.url "users/#{id.to_s}"
       end
-      if res.success?
-        data = JSON.parse(res.body)
-        User.new(data, self)
-      else
-        nil
-      end
+
+      User.new(JSON.parse(res.body), self)
     end
 
     # Retrieve a form space by its identifier
@@ -75,11 +68,7 @@ module ProntoForms
         req.url "formspaces/#{id.to_s}"
       end
 
-      if res.success?
-        FormSpace.new(JSON.parse(res.body), self)
-      else
-        nil
-      end
+      FormSpace.new(JSON.parse(res.body), self)
     end
 
     # Retrieve a form submission by identifier
@@ -90,12 +79,8 @@ module ProntoForms
       res = connection.get do |req|
         req.url "data/#{id.to_s}"
       end
-      if res.success?
-        data = JSON.parse(res.body)
-        FormSubmission.new(data, self)
-      else
-        nil
-      end
+
+      FormSubmission.new(JSON.parse(res.body), self)
     end
 
     # Create a connection that can be used to execute a request against the
@@ -105,6 +90,7 @@ module ProntoForms
     def connection
       Faraday.new(url: 'https://api.prontoforms.com/api/1.1') do |conn|
         conn.basic_auth(api_key_id, api_key_secret)
+        conn.use Faraday::Response::RaiseError
       end
     end
   end

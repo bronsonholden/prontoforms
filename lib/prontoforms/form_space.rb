@@ -22,14 +22,11 @@ module ProntoForms
       res = client.connection.get do |req|
         req.url "formspaces/#{id}/forms"
       end
-      if res.success?
-        ResourceList.new(JSON.parse(res.body), {
-          'p' => 0,
-          's' => 100
-        }, :documents, Document, self)
-      else
-        nil
-      end
+
+      ResourceList.new(JSON.parse(res.body), {
+        'p' => 0,
+        's' => 100
+      }, :documents, Document, self)
     end
 
     # Get all forms in the form space
@@ -39,14 +36,11 @@ module ProntoForms
         req.url "formspaces/#{id}/forms"
         query.each { |k, v| req.params[k] = v }
       end
-      if res.success?
-        ResourceList.new(JSON.parse(res.body), {
-          'p' => 0,
-          's' => 100
-        }.merge(query), :forms, Form, self)
-      else
-        nil
-      end
+
+      ResourceList.new(JSON.parse(res.body), {
+        'p' => 0,
+        's' => 100
+      }.merge(query), :forms, Form, self)
     end
   end
 end

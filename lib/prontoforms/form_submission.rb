@@ -62,10 +62,9 @@ module ProntoForms
       res = client.connection.get do |req|
         req.url "#{resource_name}/#{id}/document.json"
       end
-      if res.success?
-        @document = JSON.parse(res.body)
-        @document
-      end
+
+      @document = JSON.parse(res.body)
+      @document
     end
   end
 end
