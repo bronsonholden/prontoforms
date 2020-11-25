@@ -38,10 +38,12 @@ module ProntoForms
           query.each { |k, v| req.params[k] = v }
         end
 
-        ResourceList.new(JSON.parse(res.body), {
-          'p' => 0,
-          's' => 100
-        }.merge(query), method, resource, self)
+        data = JSON.parse(res.body)
+
+        return nil if data.fetch('pageData').size.zero?
+
+        ResourceList.new(data, { 'p' => 0, 's' => 100 }.merge(query), method,
+                         resource, self)
       end
     end
 
