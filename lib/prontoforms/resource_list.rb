@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'prontoforms/resource'
 
 module ProntoForms
@@ -15,6 +17,8 @@ module ProntoForms
     attr_reader :parent
 
     # Initialize the resource list
+    # TODO: splat
+    # rubocop:disable Metrics/ParameterLists
     def initialize(data, query, method, resource, client, parent = nil)
       super(data, client)
       @query = query
@@ -22,20 +26,21 @@ module ProntoForms
       @resource = resource
       @parent = parent
     end
+    # rubocop:enable Metrics/ParameterLists
 
     # Retrieve the next page of results, using the same number of items per
     # page as the original request.
     # @return [ResourceList] A ResourceList with the next set of results
     def next
-      client.send(method, query: query.merge({ 'p' => query['p'] + 1}))
+      client.send(method, query: query.merge({ 'p' => query['p'] + 1 }))
     end
 
     # Retrieve the result set
     # @return [Array] Array of resource objects
     def items
-      @data.fetch('pageData').map { |item|
+      @data.fetch('pageData').map do |item|
         resource.new(item, client, parent)
-      }
+      end
     end
   end
 end

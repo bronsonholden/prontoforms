@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 
 module ProntoForms
@@ -14,15 +16,13 @@ module ProntoForms
     # @return [nil]
     # @api private
     def self.property(name, key: nil, &block)
-      define_method(name) {
+      define_method(name) do
         if block_given?
           instance_eval(&block)
         elsif !key.nil?
           data.fetch(key)
-        else
-          nil
         end
-      }
+      end
     end
 
     def initialize(data, client, parent = nil)
@@ -33,7 +33,7 @@ module ProntoForms
 
     # The resource's identifier
     def self.resource_name
-      name = self.to_s.split("::").last
+      name = to_s.split('::').last
       "#{name.downcase}s"
     end
 

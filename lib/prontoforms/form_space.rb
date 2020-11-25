@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'prontoforms/resource'
 require 'prontoforms/form'
 require 'prontoforms/document'

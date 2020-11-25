@@ -1,0 +1,12 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Layout/FirstHashElementIndentation:
+  Enabled: false

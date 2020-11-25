@@ -1,0 +1,71 @@
+name: Checks
+
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'lib/**'
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - 'taleo.gemspec'
+      - 'spec/**'
+      - '.github/workflows/checks.yml'
+
+jobs:
+  test:
+    name: Run automated tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+
+    - name: Install dependencies
+      run: |
+        gem install bundler -v 2.1.4
+        bundle install
+
+    - name: Test
+      run: bundle exec rake
+
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+
+    - name: Install Code Scanning integration
+      run: bundle add code-scanning-rubocop --version 0.3.0 --skip-install
+
+    - name: Install dependencies
+      run: |
+        gem install bundler -v 2.1.4
+        bundle install
+
+    - name: Rubocop run
+      run: |
+        bash -c "
+          bundle exec rubocop --require code_scanning --format CodeScanning::SarifFormatter -o rubocop.sarif
+          [[ $? -ne 2 ]]
+        "
+
+    - name: Upload Sarif output
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: rubocop.sarif

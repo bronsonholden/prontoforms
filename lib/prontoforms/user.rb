@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require 'prontoforms/resource'
 
 module ProntoForms
   # A ProntoForms user account.
   class User < Resource
-    def self.resource_name() 'users'; end
+    def self.resource_name
+      'users'
+    end
 
     # @return [String] The User identifier
     property :id, key: 'identifier'

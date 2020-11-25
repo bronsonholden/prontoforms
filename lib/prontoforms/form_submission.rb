@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 require 'prontoforms/resource'
 
@@ -5,13 +7,16 @@ module ProntoForms
   # A FormSubmission represents submitted form data in ProntoForms. It
   # includes various metadata about the submission as well.
   class FormSubmission < Resource
-    def self.resource_name() 'data'; end
+    def self.resource_name
+      'data'
+    end
 
     # @return [String] The FormSubmission identifier
     property :id, key: 'identifier'
     # @return [String] Submission reference number
     property :reference_number, key: 'referenceNumber'
-    # @return [String] Submission state. One of: Complete, Processing, Dispatched
+    # @return [String] Submission state. One of: Complete, Processing,
+    #                  Dispatched
     property :state, key: 'state'
     # @return [String] Submission data state
     property :data_state, key: 'dataState'
@@ -26,9 +31,9 @@ module ProntoForms
     # @return [String] Submitter's username
     property :username, key: 'username'
 
-    alias_method :data_persisted?, :data_persisted
-    alias_method :submitter_id, :user_id
-    alias_method :submitter_username, :username
+    alias data_persisted? data_persisted
+    alias submitter_id user_id
+    alias submitter_username username
 
     # @return [DateTime] Timestamp the submission was received by the server
     property :server_receive_date do
@@ -53,7 +58,8 @@ module ProntoForms
     # Returns additional data about the submission. Uses cached data,
     # otherwise it loads and returns the data via #document!
     def document
-      return @document if !@document.nil?
+      return @document unless @document.nil?
+
       document!
     end
 

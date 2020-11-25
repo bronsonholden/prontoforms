@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'json'
 require 'prontoforms/resource_list'
@@ -50,9 +52,10 @@ module ProntoForms
     # @param id [String] The user identifier
     # @return [User] A User object for the requested user
     def user(id)
-      return nil if id.nil?
+      raise ArgumentError, 'id must be provided' if id.nil?
+
       res = connection.get do |req|
-        req.url "users/#{id.to_s}"
+        req.url "users/#{id}"
       end
 
       User.new(JSON.parse(res.body), self)
@@ -62,10 +65,10 @@ module ProntoForms
     # @param id [String] The form space identifier
     # @return [FormSpace] A FormSpace object
     def form_space(id)
-      return nil if id.nil?
+      raise ArgumentError, 'id must be provided' if id.nil?
 
       res = connection.get do |req|
-        req.url "formspaces/#{id.to_s}"
+        req.url "formspaces/#{id}"
       end
 
       FormSpace.new(JSON.parse(res.body), self)
@@ -76,8 +79,9 @@ module ProntoForms
     # @return [FormSubmission] A FormSubmission object
     def form_submission(id)
       return nil if id.nil?
+
       res = connection.get do |req|
-        req.url "data/#{id.to_s}"
+        req.url "data/#{id}"
       end
 
       FormSubmission.new(JSON.parse(res.body), self)

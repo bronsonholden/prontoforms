@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'prontoforms/resource'
 
 module ProntoForms
   # A Document is a configuration that generates output data or files when
   # attached to a form.
   class Document < Resource
-    def self.resource_name() 'documents'; end
+    def self.resource_name
+      'documents'
+    end
 
     # @return [String] The Document identifier
     property :id, key: 'identifier'
@@ -21,7 +25,7 @@ module ProntoForms
     # @return [String] Whether the document auto-links to new forms
     property :auto_link, key: 'autoLink'
 
-    alias_method :standard?, :standard
-    alias_method :auto_link?, :auto_link
+    alias standard? standard
+    alias auto_link? auto_link
   end
 end
