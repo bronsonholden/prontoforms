@@ -56,13 +56,13 @@ module ProntoForms
     # Retrieve the form space for the form submission
     # @return [FormSpace] Form space for the submission's form
     def form_space
-      client.form_space(document.dig('form', 'formSpaceId'))
+      client.form_space(data.dig('form', 'formSpaceId'))
     end
 
     # Retrieve the form for the form submission
     # @return [Form] Form for the submission
     def form
-      client.form(document.dig('form', 'formId'))
+      client.form(data.dig('form', 'formId'))
     end
 
     private
