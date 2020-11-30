@@ -1,18 +1,8 @@
 name: Checks
 
 on:
-  pull_request:
-    branches: [ master ]
   push:
-    branches:
-      - '*'
-    paths:
-      - 'lib/**'
-      - 'Gemfile'
-      - 'Gemfile.lock'
-      - 'taleo.gemspec'
-      - 'spec/**'
-      - '.github/workflows/checks.yml'
+    branches: [master]
 
 jobs:
   rubocop:
