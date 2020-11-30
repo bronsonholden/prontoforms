@@ -18,11 +18,11 @@ module ProntoForms
     # @return [Boolean] Whether updates are automatically pushed to devices
     property :push_updates_to_device, key: 'pushUpdatesToDevice'
 
-    # Get all forms in the form space
-    # @return [ResourceList] A ResourceList containing Form objects
+    # Get all documents in the form space
+    # @return [ResourceList] A ResourceList containing Document objects
     def documents
       res = client.connection.get do |req|
-        req.url "formspaces/#{id}/forms"
+        req.url "formspaces/#{id}/documents"
       end
 
       ResourceList.new(JSON.parse(res.body), {
