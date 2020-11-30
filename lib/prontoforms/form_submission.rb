@@ -68,18 +68,10 @@ module ProntoForms
     # Retrieve the standard PDF document for the form submission
     # @return [IO] Readable stream containing the PDF contents
     def pdf
-      fs = form_space
-      document = fs.documents.items.find do |document|
-        document.type == 'Pdf' && document.standard?
-      end
-
-      raise RuntimeError, "No PDF document found for " \
-                          "form space #{fs.id}" if document.nil?
-
       io = StringIO.new
       client.connection.get do |req|
-        req.url "#{resource_name}/#{id}/documents/#{document.id}"
-        req.options.on_data = Proc.new do |chunk, total_bytes|
+        req.url "#{resource_name}/#{id}/documents/#{pdf_document.id}"
+        req.options.on_data = proc do |chunk|
           io << chunk
         end
       end
@@ -89,6 +81,19 @@ module ProntoForms
     end
 
     private
+
+    # Retrieve the standard PDF document for the form submission
+    # @return [Document] PDF document for the form submission
+    # @raises RuntimeError
+    def pdf_document
+      document = form_space.documents.items.find do |doc|
+        doc.type == 'Pdf' && doc.standard?
+      end
+
+      raise "No PDF document found for form space #{fs.id}" if document.nil?
+
+      document
+    end
 
     # Returns additional data about the submission. Uses cached data,
     # otherwise it loads and returns the data via #document!
