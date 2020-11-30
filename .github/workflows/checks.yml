@@ -5,6 +5,26 @@ on:
     branches: [master]
 
 jobs:
+  test:
+    name: Run automated tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+
+    - name: Install dependencies
+      run: |
+        gem install bundler -v 2.1.4
+        bundle install
+
+    - name: Test
+      run: bundle exec rake
+
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
