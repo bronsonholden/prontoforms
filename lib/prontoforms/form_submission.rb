@@ -53,6 +53,12 @@ module ProntoForms
       client.user(document.dig('dispatcher', 'identifier'))
     end
 
+    # Retrieve the form space for the form submission
+    # @return [FormSpace] Form space for the submission's form
+    def form_space
+      client.form_space(document.dig('form', 'formSpaceId'))
+    end
+
     private
 
     # Returns additional data about the submission. Uses cached data,
