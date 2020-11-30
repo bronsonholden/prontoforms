@@ -34,7 +34,6 @@ class MockProntoForms < Sinatra::Base
         s = params.fetch('s', '100').to_i
         p = params.fetch('p', '0').to_i
         size = [num - (p * s), 0].max
-        puts "#{s}, #{p}"
         json_response 200, {
           'totalNumberOfResults' => num,
           'totalNumberOfPages' => (num / s) + 1,
