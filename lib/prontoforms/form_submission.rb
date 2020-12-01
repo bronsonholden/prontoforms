@@ -58,7 +58,7 @@ module ProntoForms
     # Check if the form was dispatched
     # @return [Boolean] True if the form was dispatched; false otherwise
     def dispatched?
-      document.dig('dispatcher', 'identifier').present?
+      !document.dig('dispatcher', 'identifier').nil?
     end
 
     # Retrieve the form space for the form submission
