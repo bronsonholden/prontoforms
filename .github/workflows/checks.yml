@@ -25,6 +25,11 @@ jobs:
     - name: Test
       run: bundle exec rake
 
+    - name: Report test coverage
+      uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
