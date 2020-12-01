@@ -1,6 +1,6 @@
 # ProntoForms
 
-[![Gem Version](https://badge.fury.io/rb/prontoforms.svg)](https://badge.fury.io/rb/prontoforms) [![Inline docs](http://inch-ci.org/github/paulholden2/prontoforms.svg?branch=master)](http://inch-ci.org/github/paulholden2/prontoforms) [![Maintainability](https://api.codeclimate.com/v1/badges/e47cd40058313e1c1c38/maintainability)](https://codeclimate.com/github/paulholden2/prontoforms/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e47cd40058313e1c1c38/test_coverage)](https://codeclimate.com/github/paulholden2/prontoforms/test_coverage)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fpaulholden2%2Fprontoforms%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/paulholden2/prontoforms/goto?ref=master) [![Gem Version](https://badge.fury.io/rb/prontoforms.svg)](https://badge.fury.io/rb/prontoforms) [![Inline docs](http://inch-ci.org/github/paulholden2/prontoforms.svg?branch=master)](http://inch-ci.org/github/paulholden2/prontoforms) [![Maintainability](https://api.codeclimate.com/v1/badges/e47cd40058313e1c1c38/maintainability)](https://codeclimate.com/github/paulholden2/prontoforms/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e47cd40058313e1c1c38/test_coverage)](https://codeclimate.com/github/paulholden2/prontoforms/test_coverage)
 
 A library for interacting with the ProntoForms REST API in Ruby applications.
 
