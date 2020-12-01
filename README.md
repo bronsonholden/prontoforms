@@ -1,6 +1,6 @@
 # ProntoForms
 
-[![Gem Version](https://badge.fury.io/rb/prontoforms.svg)](https://badge.fury.io/rb/prontoforms) [![Inline docs](http://inch-ci.org/github/paulholden2/prontoforms.svg?branch=master)](http://inch-ci.org/github/paulholden2/prontoforms)
+[![Gem Version](https://badge.fury.io/rb/prontoforms.svg)](https://badge.fury.io/rb/prontoforms) [![Inline docs](http://inch-ci.org/github/paulholden2/prontoforms.svg?branch=master)](http://inch-ci.org/github/paulholden2/prontoforms) [![Maintainability](https://api.codeclimate.com/v1/badges/e47cd40058313e1c1c38/maintainability)](https://codeclimate.com/github/paulholden2/prontoforms/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e47cd40058313e1c1c38/test_coverage)](https://codeclimate.com/github/paulholden2/prontoforms/test_coverage)
 
 A library for interacting with the ProntoForms REST API in Ruby applications.
 
