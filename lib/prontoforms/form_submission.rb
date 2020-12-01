@@ -50,7 +50,15 @@ module ProntoForms
     # Retrieve the dispatching User, if the form was dispatched
     # @return [User] The user that dispatched the form, or nil
     def dispatcher
+      return nil unless dispatched?
+
       client.user(document.dig('dispatcher', 'identifier'))
+    end
+
+    # Check if the form was dispatched
+    # @return [Boolean] True if the form was dispatched; false otherwise
+    def dispatched?
+      document.dig('dispatcher', 'identifier').present?
     end
 
     # Retrieve the form space for the form submission
