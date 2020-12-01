@@ -4,6 +4,9 @@
 
 A library for interacting with the ProntoForms REST API in Ruby applications.
 
+Note: version 0.4.0 included a breaking change, and has been yanked from
+RubyGems. If you are using it, please upgrade to 1.x or revert to 0.3.1.
+
 ## Installation
 
 Add this line to your application's Gemfile:
