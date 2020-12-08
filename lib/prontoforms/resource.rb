@@ -20,7 +20,8 @@ module ProntoForms
         if block_given?
           instance_eval(&block)
         elsif !key.nil?
-          data.fetch(key)
+          key = [key] unless key.is_a?(Array)
+          data.fetch(*key)
         end
       end
     end
