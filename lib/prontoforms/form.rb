@@ -18,5 +18,11 @@ module ProntoForms
     property :description, key: 'description'
     # @return [String] Form state
     property :state, key: 'state'
+
+    # Get the Form's form space ID
+    # @return [String] Form space identifier
+    def form_space_id
+      parent.id
+    end
   end
 end
