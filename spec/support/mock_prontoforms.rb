@@ -3,6 +3,7 @@
 require 'json'
 require 'sinatra/base'
 require 'sinatra/namespace'
+require 'support/mock_form_spaces'
 
 class MockProntoForms < Sinatra::Base
   register Sinatra::Namespace
@@ -28,19 +29,6 @@ class MockProntoForms < Sinatra::Base
   end
 
   namespace '/api/1.1' do
-    namespace '/formspaces' do
-      get do
-        num = 1000
-        s = params.fetch('s', '100').to_i
-        p = params.fetch('p', '0').to_i
-        size = [num - (p * s), 0].max
-        json_response 200, {
-          'totalNumberOfResults' => num,
-          'totalNumberOfPages' => (num / s) + 1,
-          'zone' => nil,
-          'pageData' => Array.new(size) { |i| mock_form_space(p * s + i + 1) }
-        }
-      end
-    end
+    register MockFormSpaces
   end
 end
