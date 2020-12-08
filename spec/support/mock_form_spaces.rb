@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module MockFormSpaces
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def self.registered(app)
     app.register Sinatra::Namespace
 
@@ -17,4 +20,5 @@ module MockFormSpaces
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 end
