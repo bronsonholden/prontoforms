@@ -18,6 +18,10 @@ module MockFormSpaces
           'pageData' => Array.new(size) { |i| mock_form_space(p * s + i + 1) }
         }
       end
+
+      get '/:id' do
+        json_response 200, mock_form_space
+      end
     end
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
