@@ -19,7 +19,7 @@ class MockProntoForms < Sinatra::Base
     data.to_json
   end
 
-  def mock_form_space(id)
+  def mock_form_space(id = 1)
     {
       'identifier' => id.to_s,
       'name' => "Form Space ##{id}",
