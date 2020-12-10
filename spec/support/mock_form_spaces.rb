@@ -7,16 +7,7 @@ module MockFormSpaces
 
     app.namespace '/formspaces' do
       get do
-        num = 1000
-        s = params.fetch('s', '100').to_i
-        p = params.fetch('p', '0').to_i
-        size = [num - (p * s), 0].max
-        json_response 200, {
-          'totalNumberOfResults' => num,
-          'totalNumberOfPages' => (num / s) + 1,
-          'zone' => nil,
-          'pageData' => Array.new(size) { |i| mock_form_space(p * s + i + 1) }
-        }
+        json_response 200, mock_paged_data { |i| mock_form_space(i) }
       end
 
       get '/:id' do
