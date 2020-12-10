@@ -24,7 +24,7 @@ class MockProntoForms < Sinatra::Base
   # @param p [Integer] Page number to return
   # @param s [Integer] Page size
   def mock_paged_data(num = 1000, p = params.fetch('p', '1').to_i,
-                            s = params.fetch('s', '100').to_i, &block)
+                      s = params.fetch('s', '100').to_i, &block)
     count = [num - (p * s), 0].max
     {
       'totalNumberOfResults' => num,
