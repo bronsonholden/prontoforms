@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module MockForms
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def self.registered(app)
     app.namespace '/forms' do
       get do
-        json_response 200, mock_paged_data { |i| mock_form(i) }
+        json_response 200, (mock_paged_data { |i| mock_form(i) })
       end
 
       namespace '/:form_id' do
@@ -13,5 +14,4 @@ module MockForms
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 end

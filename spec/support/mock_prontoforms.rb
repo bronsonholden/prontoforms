@@ -19,18 +19,21 @@ class MockProntoForms < Sinatra::Base
     data.to_json
   end
 
+  # Disable cops for mock data methods
+  # rubocop:disable Metrics/MethodLength
+
   # Return paged mock data.
   # @param num [Integer] Total number of items
   # @param p [Integer] Page number to return
   # @param s [Integer] Page size
-  def mock_paged_data(num = 1000, p = params.fetch('p', '1').to_i,
-                      s = params.fetch('s', '100').to_i, &block)
-    count = [num - (p * s), 0].max
+  def mock_paged_data(num = 1000, page = params.fetch('p', '1').to_i,
+                      size = params.fetch('s', '100').to_i, &block)
+    count = [num - (page * size), 0].max
     {
       'totalNumberOfResults' => num,
-      'totalNumberOfPages' => (num / s) + 1,
+      'totalNumberOfPages' => (num / size) + 1,
       'zone' => nil,
-      'pageData' => Array.new(count) { |i| block.call(p * s + i + 1) }
+      'pageData' => Array.new(count) { |i| block.call(page * size + i + 1) }
     }
   end
 
@@ -78,6 +81,8 @@ class MockProntoForms < Sinatra::Base
       'draftVersion' => nil
     })
   end
+
+  # rubocop:enable Metrics/MethodLength
 
   namespace '/api/1.1' do
     register MockFormSpaces

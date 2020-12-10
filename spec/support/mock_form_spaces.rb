@@ -3,13 +3,13 @@
 require 'support/mock_forms'
 
 module MockFormSpaces
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength
   def self.registered(app)
     app.register Sinatra::Namespace
 
     app.namespace '/formspaces' do
       get do
-        json_response 200, mock_paged_data { |i| mock_form_space(i) }
+        json_response 200, (mock_paged_data { |i| mock_form_space(i) })
       end
 
       namespace '/:form_space_id' do
@@ -21,5 +21,5 @@ module MockFormSpaces
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength
 end
