@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'support/mock_forms'
+
 module MockFormSpaces
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def self.registered(app)
@@ -10,8 +12,12 @@ module MockFormSpaces
         json_response 200, mock_paged_data { |i| mock_form_space(i) }
       end
 
-      get '/:form_space_id' do
-        json_response 200, mock_form_space(params['form_space_id'])
+      namespace '/:form_space_id' do
+        get do
+          json_response 200, mock_form_space(params['form_space_id'])
+        end
+
+        register MockForms
       end
     end
   end

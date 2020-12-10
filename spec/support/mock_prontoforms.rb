@@ -43,6 +43,40 @@ class MockProntoForms < Sinatra::Base
     }
   end
 
+  def mock_form_version(id = 1)
+    {
+      'identifier' => id.to_s,
+      'modelVersion' => 'v2',
+      'asyncStatus' => nil,
+      'name' => "Form version ##{id}",
+      'description' => "A form version with identifier #{id}",
+      'tags' => %w[form-version doodads thingamabobs],
+      'state' => 'Active',
+      'version' => 10,
+      'passthrough' => false,
+      'initiationMethod' => 'Both',
+      'dispatchDeclinable' => false,
+      'editable' => 'NotEditable',
+      'notes' => 'Form version notes'
+    }
+  end
+
+  def mock_form(id = 1, paged: true)
+    data = {
+      'identifier' => id.to_s,
+      'asyncStatus' => nil,
+      'name' => "Form ##{id}",
+      'description' => "A form with identifier #{id}",
+      'state' => 'Active',
+      'locked' => false
+    }
+    data.merge!({
+      'activeVersion' => mock_form_version,
+      'draftVersion' => nil
+    }) unless paged
+    data
+  end
+
   namespace '/api/1.1' do
     register MockFormSpaces
   end

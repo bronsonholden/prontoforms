@@ -31,6 +31,15 @@ module ProntoForms
       }, :documents, Document, self)
     end
 
+    def form(form_id)
+      res = client.connection.get do |req|
+        req.url "formspaces/#{id}/forms/#{form_id}"
+      end
+
+      data = JSON.parse(res.body)
+      Form.new(data, client, self)
+    end
+
     # Get all forms in the form space
     # @return [ResourceList] A ResourceList containing Form objects
     def forms(query: {})
