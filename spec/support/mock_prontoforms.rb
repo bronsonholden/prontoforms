@@ -70,11 +70,13 @@ class MockProntoForms < Sinatra::Base
       'state' => 'Active',
       'locked' => false
     }
-    data.merge!({
+
+    return data if paged
+
+    data.merge({
       'activeVersion' => mock_form_version,
       'draftVersion' => nil
-    }) unless paged
-    data
+    })
   end
 
   namespace '/api/1.1' do
