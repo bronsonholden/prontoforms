@@ -10,8 +10,8 @@ module MockFormSpaces
         json_response 200, mock_paged_data { |i| mock_form_space(i) }
       end
 
-      get '/:id' do
-        json_response 200, mock_form_space
+      get '/:form_space_id' do
+        json_response 200, mock_form_space(params['form_space_id'])
       end
     end
   end
