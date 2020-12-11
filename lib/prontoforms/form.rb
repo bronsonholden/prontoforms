@@ -36,6 +36,16 @@ module ProntoForms
       FormIteration.new(JSON.parse(res.body), client, self)
     end
 
+    def iteration(id)
+      raise ArgumentError, 'id must be provided' if id.nil?
+
+      res = client.connection.get do |req|
+        req.url "#{url}/iterations/#{id}"
+      end
+
+      FormIteration.new(JSON.parse(res.body), client, self)
+    end
+
     def iterations(query: {})
       res = client.connection.get do |req|
         req.url "#{url}/iterations"
