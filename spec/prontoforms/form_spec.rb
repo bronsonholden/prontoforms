@@ -18,6 +18,10 @@ RSpec.describe ProntoForms::Form do
     expect(form.form_space_id).to eq(form_space.id)
   end
 
+  it 'has iterations' do
+    expect(form.iterations.items).to all(be_a(ProntoForms::FormIteration))
+  end
+
   describe 'mock data' do
     context 'when paged' do
       it 'excludes additional data' do

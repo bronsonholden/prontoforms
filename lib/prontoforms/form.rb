@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'prontoforms/resource'
+require 'prontoforms/form_iteration'
 
 module ProntoForms
   # A form includes inputs, validations, logic, and other configuration that
@@ -23,6 +24,17 @@ module ProntoForms
     # @return [String] Form space identifier
     def form_space_id
       parent.id
+    end
+
+    def iterations(query: {})
+      res = client.connection.get do |req|
+        req.url "formspaces/#{form_space_id}/forms/#{id}/iterations"
+      end
+
+      ResourceList.new(JSON.parse(res.body), {
+        'p' => 0,
+        's' => 100
+      }.merge(query), :iterations, FormIteration, client, self)
     end
   end
 end

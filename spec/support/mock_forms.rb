@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'support/mock_form_iterations'
+
 module MockForms
   def self.registered(app)
     app.namespace '/forms' do
@@ -11,6 +13,8 @@ module MockForms
         get do
           json_response 200, mock_form(params['form_id'], paged: false)
         end
+
+        register MockFormIterations
       end
     end
   end
