@@ -51,7 +51,7 @@ module ProntoForms
       ResourceList.new(JSON.parse(res.body), {
         'p' => 0,
         's' => 100
-      }.merge(query), :forms, Form, self)
+      }.merge(query), :forms, Form, client, self)
     end
   end
 end
