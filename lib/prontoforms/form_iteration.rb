@@ -20,6 +20,8 @@ module ProntoForms
     property :initiation_method, key: 'initiationMethod'
     # @return [String] Can dispatched forms of this iteration be declined
     property :dispatched_declinable, key: 'dispatchDeclinable'
+    # @return [Array] Array of document IDs attached to this iteration
+    property :document_ids, key: 'documentIds'
 
     alias can_decline_dispatch? dispatched_declinable
   end
