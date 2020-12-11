@@ -21,7 +21,7 @@ module ProntoForms
           instance_eval(&block)
         elsif !key.nil?
           key = [key] unless key.is_a?(Array)
-          data.fetch(*key)
+          key.inject(data) { |obj, k| obj.fetch(k) }
         end
       end
     end
