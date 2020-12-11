@@ -28,13 +28,19 @@ module ProntoForms
 
     def iterations(query: {})
       res = client.connection.get do |req|
-        req.url "formspaces/#{form_space_id}/forms/#{id}/iterations"
+        req.url "#{url}/iterations"
       end
 
       ResourceList.new(JSON.parse(res.body), {
         'p' => 0,
         's' => 100
       }.merge(query), :iterations, FormIteration, client, self)
+    end
+
+    private
+
+    def url
+      "formspaces/#{form_space_id}/forms/#{id}"
     end
   end
 end
