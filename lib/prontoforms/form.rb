@@ -19,11 +19,21 @@ module ProntoForms
     property :description, key: 'description'
     # @return [String] Form state
     property :state, key: 'state'
+    # @return [String] Identifier of the active form version
+    property :active_version_id, key: %w[activeVersion identifier]
 
     # Get the Form's form space ID
     # @return [String] Form space identifier
     def form_space_id
       parent.id
+    end
+
+    def current_version
+      res = client.connection.get do |req|
+        req.url "#{url}/iterations/#{active_version_id}"
+      end
+
+      FormIteration.new(JSON.parse(res.body), client, self)
     end
 
     def iterations(query: {})

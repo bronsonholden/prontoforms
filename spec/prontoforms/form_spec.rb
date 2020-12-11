@@ -22,6 +22,10 @@ RSpec.describe ProntoForms::Form do
     expect(form.iterations.items).to all(be_a(ProntoForms::FormIteration))
   end
 
+  it 'has a current version' do
+    expect(form.current_version).to be_a(ProntoForms::FormIteration)
+  end
+
   describe 'mock data' do
     context 'when paged' do
       it 'excludes additional data' do
