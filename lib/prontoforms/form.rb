@@ -19,13 +19,15 @@ module ProntoForms
     property :description, key: 'description'
     # @return [String] Form state
     property :state, key: 'state'
-    # @return [String] Identifier of the active form version
-    property :active_version_id, key: %w[activeVersion identifier]
 
     # Get the Form's form space ID
     # @return [String] Form space identifier
     def form_space_id
       parent.id
+    end
+
+    def active_version_id
+      full_data.dig('activeVersion', 'identifier')
     end
 
     def current_version
@@ -58,6 +60,13 @@ module ProntoForms
     end
 
     private
+
+    def full_data
+      return @full_data unless @full_data.nil?
+
+      @full_data = client.form_space(form_space_id).form(id).data
+      @full_data
+    end
 
     def url
       "formspaces/#{form_space_id}/forms/#{id}"
