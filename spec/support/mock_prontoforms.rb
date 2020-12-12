@@ -6,6 +6,7 @@ require 'sinatra/namespace'
 require 'support/mock_form_spaces'
 require 'support/mock_form_submissions'
 
+# rubocop:disable Metrics/ClassLength
 class MockProntoForms < Sinatra::Base
   register Sinatra::Namespace
 
@@ -125,7 +126,7 @@ class MockProntoForms < Sinatra::Base
       })
       # Keys which are only present in the paged response data
       paged_only_keys = %w[actionState dataPersisted serverReceiveDate
-                                                      userId username]
+                           userId username]
       data.delete_if { |key| paged_only_keys.include?(key) }
     end
 
@@ -156,3 +157,4 @@ class MockProntoForms < Sinatra::Base
     register MockFormSubmissions
   end
 end
+# rubocop:enable Metrics/ClassLength

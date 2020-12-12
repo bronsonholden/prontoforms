@@ -3,6 +3,7 @@
 require 'support/mock_form_iterations'
 
 module MockForms
+  # rubocop:disable Metrics/MethodLength
   def self.registered(app)
     app.namespace '/forms' do
       get do
@@ -18,4 +19,5 @@ module MockForms
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

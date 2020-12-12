@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe ProntoForms::Form do
   let(:client) { ProntoForms::Client.new('key', 'secret') }
   let(:form_space) { client.form_space(1) }
@@ -44,3 +45,4 @@ RSpec.describe ProntoForms::Form do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

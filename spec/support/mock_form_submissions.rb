@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module MockFormSubmissions
+  # rubocop:disable Metrics/MethodLength
   def self.registered(app)
     app.namespace '/data' do
       get do
@@ -16,4 +17,5 @@ module MockFormSubmissions
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module MockFormIterations
+  # rubocop:disable Metrics/MethodLength
   def self.registered(app)
     app.register Sinatra::Namespace
 
@@ -16,4 +17,5 @@ module MockFormIterations
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end
