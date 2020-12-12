@@ -73,6 +73,21 @@ module ProntoForms
       form_space.form(full_data.dig('form', 'formId'))
     end
 
+    # Retrieve the current version of the form
+    # @return [FormIteration] The form iteration
+    def form_version
+      form.current_version
+    end
+
+    def documents(populate: false)
+      ids = form_version.documents
+      if populate
+        ids.map { |id| form.iteration(id) }
+      else
+        ids
+      end
+    end
+
     private
 
     def full_data
