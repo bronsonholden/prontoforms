@@ -64,16 +64,23 @@ module ProntoForms
     # Retrieve the form space for the form submission
     # @return [FormSpace] Form space for the submission's form
     def form_space
-      client.form_space(data.dig('form', 'formSpaceId'))
+      client.form_space(full_data.dig('form', 'formSpaceId'))
     end
 
     # Retrieve the form for the form submission
     # @return [Form] Form for the submission
     def form
-      client.form(data.dig('form', 'formId'))
+      form_space.form(full_data.dig('form', 'formId'))
     end
 
     private
+
+    def full_data
+      return @full_data unless @full_data.nil?
+
+      @full_data = client.form_submission(id).data
+      @full_data
+    end
 
     # Returns additional data about the submission. Uses cached data,
     # otherwise it loads and returns the data via #document!
