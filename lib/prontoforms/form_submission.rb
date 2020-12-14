@@ -88,7 +88,21 @@ module ProntoForms
       end
     end
 
+    def download_document(document)
+      io = StringIO.new
+      res = client.connection.get do |req|
+        req.url "#{url}/documents/#{document.id}"
+        req.options.on_data = Proc.new { |chunk| io << chunk }
+      end
+      io.rewind
+      io
+    end
+
     private
+
+    def url
+      "#{resource_name}/#{id}"
+    end
 
     def full_data
       return @full_data unless @full_data.nil?

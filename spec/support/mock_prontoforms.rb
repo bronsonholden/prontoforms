@@ -3,12 +3,14 @@
 require 'json'
 require 'sinatra/base'
 require 'sinatra/namespace'
+require 'sinatra/streaming'
 require 'support/mock_form_spaces'
 require 'support/mock_form_submissions'
 
 # rubocop:disable Metrics/ClassLength
 class MockProntoForms < Sinatra::Base
   register Sinatra::Namespace
+  register Sinatra::Streaming
 
   def request_json
     request.body.rewind

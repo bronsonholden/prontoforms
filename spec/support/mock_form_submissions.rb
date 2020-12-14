@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'support/mock_form_submission_documents'
+
 module MockFormSubmissions
   # rubocop:disable Metrics/MethodLength
   def self.registered(app)
@@ -14,6 +16,8 @@ module MockFormSubmissions
           id = params['submission_id']
           json_response 200, mock_form_submission(id, paged: false)
         end
+
+        register MockFormSubmissionDocuments
       end
     end
   end
