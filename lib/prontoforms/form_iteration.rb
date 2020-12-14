@@ -20,9 +20,23 @@ module ProntoForms
     property :initiation_method, key: 'initiationMethod'
     # @return [String] Can dispatched forms of this iteration be declined
     property :dispatched_declinable, key: 'dispatchDeclinable'
-    # @return [Array] Array of document IDs attached to this iteration
-    property :document_ids, key: 'documentIds'
 
     alias can_decline_dispatch? dispatched_declinable
+
+    # @return [Array] Array of document IDs attached to this iteration
+    def document_ids
+      full_data.fetch('documentIds')
+    end
+
+    private
+
+
+
+    def full_data
+      return @full_data unless @full_data.nil?
+
+      @full_data = parent.iteration(id).data
+      @full_data
+    end
   end
 end
