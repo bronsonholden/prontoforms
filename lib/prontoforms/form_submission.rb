@@ -80,7 +80,7 @@ module ProntoForms
     end
 
     def documents(populate: false)
-      ids = form_version.documents
+      ids = form_version.document_ids
       if populate
         ids.map { |id| form.iteration(id) }
       else
