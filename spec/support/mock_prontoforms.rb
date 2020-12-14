@@ -48,8 +48,8 @@ class MockProntoForms < Sinatra::Base
     }
   end
 
-  def mock_form_version(id = 1)
-    {
+  def mock_form_version(id = 1, paged: true)
+    data = {
       'identifier' => id.to_s,
       'modelVersion' => 'v2',
       'asyncStatus' => nil,
@@ -64,6 +64,20 @@ class MockProntoForms < Sinatra::Base
       'editable' => 'NotEditable',
       'notes' => 'Form version notes'
     }
+
+    unless paged
+      data.merge!({
+        'destinations' => Array.new(5) do |i|
+          {
+            'destinationId' => i.to_s,
+            'documentIds' => [i.to_s]
+          }
+        end,
+        'documentIds' => Array.new(5) { |i| i }
+      })
+    end
+
+    data
   end
 
   def mock_form(id = 1, paged: true)
