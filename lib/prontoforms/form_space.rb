@@ -31,6 +31,14 @@ module ProntoForms
       }, :documents, Document, self)
     end
 
+    def document(document_id)
+      res = client.connection.get do |req|
+        req.url "formspaces/#{id}/documents/#{document_id}"
+      end
+
+      Document.new(JSON.parse(res.body), client, self)
+    end
+
     def form(form_id)
       res = client.connection.get do |req|
         req.url "formspaces/#{id}/forms/#{form_id}"

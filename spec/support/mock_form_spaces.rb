@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'support/mock_forms'
+require 'support/mock_form_space_documents'
 
 module MockFormSpaces
   # rubocop:disable Metrics/MethodLength
@@ -18,6 +19,7 @@ module MockFormSpaces
         end
 
         register MockForms
+        register MockFormSpaceDocuments
       end
     end
   end

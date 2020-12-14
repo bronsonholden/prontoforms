@@ -84,7 +84,7 @@ module ProntoForms
     def documents(populate: false)
       ids = form_version.document_ids
       if populate
-        ids.map { |id| form.iteration(id) }
+        ids.map { |id| form_space.document(id) }
       else
         ids
       end

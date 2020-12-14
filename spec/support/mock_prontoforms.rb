@@ -41,6 +41,18 @@ class MockProntoForms < Sinatra::Base
     }
   end
 
+  def mock_document(id = 1)
+    data = {
+      'identifier' => id.to_s,
+      'type' => 'Pdf',
+      'name' => 'PDF (V2)',
+      'description' => '',
+      'formDocumentVersion' => 'v2',
+      'standard': true,
+      'autoLink': false
+    }
+  end
+
   def mock_form_space(id = 1)
     {
       'identifier' => id.to_s,
