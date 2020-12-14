@@ -30,8 +30,6 @@ module ProntoForms
 
     private
 
-
-
     def full_data
       return @full_data unless @full_data.nil?
 

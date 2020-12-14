@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MockFormSubmissionDocuments
   def self.registered(app)
     app.namespace '/documents' do

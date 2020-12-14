@@ -12,7 +12,8 @@ module MockFormIterations
 
       namespace '/:form_iteration_id' do
         get do
-          json_response 200, mock_form_version(params['form_iteration_id'], paged: false)
+          json_response 200, mock_form_version(params['form_iteration_id'],
+                                               paged: false)
         end
       end
     end

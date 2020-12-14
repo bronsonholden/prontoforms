@@ -79,6 +79,8 @@ module ProntoForms
       form.current_version
     end
 
+    # Retrieve all documents attached to this form submission
+    # @return [Array] Documents attached to the form submission
     def documents(populate: false)
       ids = form_version.document_ids
       if populate
@@ -88,11 +90,14 @@ module ProntoForms
       end
     end
 
+    # Download a specific document. The Document must have been attached to
+    # the form's current version at the time of submission.
+    # @return [IO] Data stream for the document
     def download_document(document)
       io = StringIO.new
-      res = client.connection.get do |req|
+      client.connection.get do |req|
         req.url "#{url}/documents/#{document.id}"
-        req.options.on_data = Proc.new { |chunk| io << chunk }
+        req.options.on_data = proc { |chunk| io << chunk }
       end
       io.rewind
       io
