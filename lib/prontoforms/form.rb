@@ -35,11 +35,7 @@ module ProntoForms
     # Retrieve the latest iteration of the form
     # @return [FormIteration] The latest form iteration
     def current_version
-      res = client.connection.get do |req|
-        req.url "#{url}/iterations/#{active_version_id}"
-      end
-
-      FormIteration.new(JSON.parse(res.body), client, self)
+      iteration(active_version_id)
     end
 
     # Retrieve a form iteration by its identifier
