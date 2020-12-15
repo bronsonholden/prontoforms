@@ -66,10 +66,7 @@ module ProntoForms
     private
 
     def full_data
-      return @full_data unless @full_data.nil?
-
-      @full_data = client.form_space(form_space_id).form(id).data
-      @full_data
+      client.form_space(form_space_id).form(id).data
     end
 
     # Get the resource path for this form

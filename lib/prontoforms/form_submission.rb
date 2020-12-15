@@ -110,10 +110,7 @@ module ProntoForms
     end
 
     def full_data
-      return @full_data unless @full_data.nil?
-
-      @full_data = client.form_submission(id).data
-      @full_data
+      client.form_submission(id).data
     end
 
     # Returns additional data about the submission. Uses cached data,
