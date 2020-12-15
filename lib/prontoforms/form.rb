@@ -26,10 +26,14 @@ module ProntoForms
       parent.id
     end
 
+    # Get the identifier for the active form iteration
+    # @return [Integer] The active form iteration identifier
     def active_version_id
       full_data.dig('activeVersion', 'identifier')
     end
 
+    # Retrieve the latest iteration of the form
+    # @return [FormIteration] The latest form iteration
     def current_version
       res = client.connection.get do |req|
         req.url "#{url}/iterations/#{active_version_id}"
@@ -38,6 +42,8 @@ module ProntoForms
       FormIteration.new(JSON.parse(res.body), client, self)
     end
 
+    # Retrieve a form iteration by its identifier
+    # @return [FormIteration] The latest form iteration
     def iteration(id)
       raise ArgumentError, 'id must be provided' if id.nil?
 
@@ -48,6 +54,8 @@ module ProntoForms
       FormIteration.new(JSON.parse(res.body), client, self)
     end
 
+    # Retrieve all iterations of the form
+    # @return [ResourceList] Resource list containing form iterations
     def iterations(query: {})
       res = client.connection.get do |req|
         req.url "#{url}/iterations"
@@ -68,6 +76,8 @@ module ProntoForms
       @full_data
     end
 
+    # Get the resource path for this form
+    # @return [String] Formatted resource path
     def url
       "formspaces/#{form_space_id}/forms/#{id}"
     end

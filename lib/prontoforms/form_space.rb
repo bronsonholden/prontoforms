@@ -31,6 +31,8 @@ module ProntoForms
       }, :documents, Document, self)
     end
 
+    # Retrieve a document configured in the form space by its identifier
+    # @return [Document] The document
     def document(document_id)
       res = client.connection.get do |req|
         req.url "formspaces/#{id}/documents/#{document_id}"
@@ -39,6 +41,8 @@ module ProntoForms
       Document.new(JSON.parse(res.body), client, self)
     end
 
+    # Retrieve a form in the form space by its identifier
+    # @return [Form] The form
     def form(form_id)
       res = client.connection.get do |req|
         req.url "formspaces/#{id}/forms/#{form_id}"
