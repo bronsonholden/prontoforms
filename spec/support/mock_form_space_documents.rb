@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module MockFormSpaceDocuments
   def self.registered(app)
     app.namespace '/documents' do

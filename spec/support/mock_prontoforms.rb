@@ -42,7 +42,7 @@ class MockProntoForms < Sinatra::Base
   end
 
   def mock_document(id = 1)
-    data = {
+    {
       'identifier' => id.to_s,
       'type' => 'Pdf',
       'name' => 'PDF (V2)',
